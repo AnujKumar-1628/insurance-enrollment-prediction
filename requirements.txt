@@ -9,7 +9,7 @@ joblib
 
 # Experiment tracking
 mlflow
-wandb
+
 
 # Visualization and notebooks
 matplotlib
