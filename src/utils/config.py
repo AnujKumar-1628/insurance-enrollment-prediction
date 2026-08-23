@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from src.utils.path import (
+    MLFLOW_DB_PATH,
     MLRUNS_DIR,
     MODEL_PATH,
     MODELS_DIR,
@@ -71,11 +72,11 @@ class ModelConfig:
 @dataclass(frozen=True)
 class TrackingConfig:
     experiment_name: str = "insurance-enrollment-prediction"
-    mlflow_tracking_uri: str = MLRUNS_DIR.as_uri()
+    mlflow_tracking_uri: str = f"sqlite:///{MLFLOW_DB_PATH.as_posix()}"
     wandb_project: str = "insurance-enrollment-prediction"
     wandb_mode: str = "offline"
     enable_mlflow: bool = True
-    enable_wandb: bool = True
+    enable_wandb: bool = False
 
 
 @dataclass(frozen=True)

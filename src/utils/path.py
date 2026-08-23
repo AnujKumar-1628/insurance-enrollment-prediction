@@ -17,6 +17,7 @@ FIGURES_DIR = REPORTS_DIR / "figures"
 NOTEBOOKS_DIR = PROJECT_ROOT / "notebooks"
 LOGS_DIR = PROJECT_ROOT / "logs"
 MLRUNS_DIR = PROJECT_ROOT / "mlruns"
+MLFLOW_DB_PATH = PROJECT_ROOT / "mlflow.db"
 
 
 # Data files
