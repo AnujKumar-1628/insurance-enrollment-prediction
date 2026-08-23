@@ -95,10 +95,26 @@ Test confusion matrix:
 | Actual 0 | 765 | 0 |
 | Actual 1 | 2 | 1,233 |
 
+## High-Score Validity Check
+
+The near-perfect validation and test scores should be treated as a warning sign rather than accepted at face value. The project code does not show obvious classic leakage: the data is split into train, validation, and test rows before preprocessing, `employee_id` and `enrolled` are removed from the feature matrix, and the preprocessing steps are fitted inside sklearn pipelines using the training data.
+
+However, additional diagnostics suggest that the dataset itself is almost perfectly rule-separable. The raw feature combinations show very sharp enrollment patterns:
+
+| Dependents | Employment type | Enrollment rate |
+| --- | --- | ---: |
+| No | Contract | 0.00% |
+| No | Part-time | 0.00% |
+| Yes | Full-time | 92.78% |
+
+A shallow diagnostic decision tree trained only on the original non-ID features, without the engineered features used by the production model, reached 0.9995 test accuracy with only one incorrect test prediction. Its decisions were based mainly on salary, age, employment type, and dependent status. A simple rule derived from that tree matched 9,998 of the 10,000 raw labels.
+
+This means the high scores are more likely explained by the target being generated from a simple synthetic or deterministic rule than by the model learning a robust real-world enrollment pattern. XGBoost is probably rediscovering that rule very effectively. The model may be accurate for this specific CSV, but these results should not be interpreted as evidence that it will generalize to real insurance enrollment behavior without validation on an independent dataset.
+
 ## Key Takeaways
 
-XGBoost is the strongest model in the production training script, with near-perfect validation and test performance. The model appears to capture the important enrollment signals very well, especially dependent status, employment type, salary, and age-related patterns.
+XGBoost is the strongest model in the production training script, with near-perfect validation and test performance. The model captures the dominant patterns in this dataset very well, especially dependent status, employment type, salary, and age-related patterns.
 
 The logistic regression baseline is also strong, which suggests the dataset has clear separable structure after preprocessing and feature engineering. This is useful because it gives a reliable benchmark and confirms that the preprocessing pipeline is effective.
 
-The very high tree-model scores should be treated carefully. They may be valid for this dataset, but such strong performance deserves extra checks before production use.
+The very high tree-model scores should be treated carefully. They appear to come from an almost deterministic structure in the dataset, not necessarily from a model that would generalize to real-world enrollment data. Before production use, the model should be evaluated on a genuinely independent sample, preferably from the real data-generating process or from a later time period.
