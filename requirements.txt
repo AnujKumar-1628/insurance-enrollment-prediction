@@ -1,0 +1,26 @@
+# Core data science
+numpy
+pandas
+scikit-learn
+xgboost
+
+# Model persistence
+joblib
+
+# Experiment tracking
+mlflow
+wandb
+
+# Visualization and notebooks
+matplotlib
+seaborn
+ipython
+jupyter
+
+# API
+fastapi
+uvicorn
+
+# Testing
+pytest
+httpx2
