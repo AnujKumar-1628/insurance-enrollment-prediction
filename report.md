@@ -61,11 +61,7 @@ Notebook validation performance:
 | SGD Logistic Regression | 0.9460 | 0.9804 | 0.9312 | 0.9551 | 0.9900 |
 | Regularized XGBoost | 0.9985 | 1.0000 | 0.9976 | 0.9988 | 1.0000 |
 
-The notebook selected regularized gradient boosting for the held-out test check because it had the highest validation F1 in that notebook run. Its test performance was perfect on the saved split:
 
-| Model | Accuracy | Precision | Recall | F1 | ROC-AUC |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Regularized Gradient Boosting | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
 
 Production training-script validation performance:
 
