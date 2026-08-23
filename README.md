@@ -177,4 +177,14 @@ Validation results:
 
 The current best model is XGBoost by validation F1 score.
 
+Saved final model test results:
+
+| Metric | Score |
+| --- | ---: |
+| Accuracy | 0.9990 |
+| Precision | 1.0000 |
+| Recall | 0.9984 |
+| F1 | 0.9992 |
+| ROC-AUC | 1.0000 |
+
 See [report.md](report.md) for the project summary, observations, evaluation results, and next steps.
