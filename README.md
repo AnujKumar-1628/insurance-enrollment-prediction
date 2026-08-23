@@ -108,28 +108,6 @@ mlflow.db = run metadata, params, metrics
 mlruns/   = model artifacts and files
 ```
 
-## Optional Weights & Biases Tracking
-
-The MLflow experiment script also attempts to log to Weights & Biases if `wandb` is installed.
-
-For offline local logging:
-
-```powershell
-python scripts/mlflow_experiment.py
-```
-
-To sync offline W&B runs later:
-
-```powershell
-wandb sync wandb
-```
-
-For online logging:
-
-```powershell
-wandb login
-python scripts/mlflow_experiment.py
-```
 
 ## Evaluate the Saved Model
 
